@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XV SERVER | فروشگاه رنک</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101010;color:white;font-family:Tahoma,Arial,sans-serif}
+header{text-align:center;padding:30px 12px;border-bottom:1px solid #5c4b1b}
+h1,h2{color:#e6c65a}
+header h1{font-size:32px;margin:5px}
+header p,.sub{color:#bbb}
+.hero{text-align:center;padding:45px 15px}
+.hero h2{font-size:clamp(27px,5vw,45px)}
+.btn{background:linear-gradient(135deg,#f0d879,#b88b19);color:#17130a;border:0;border-radius:9px;padding:12px 18px;font-weight:bold;cursor:pointer}
+a{text-decoration:none}
+.ranks{width:min(1000px,92%);margin:auto}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.card{background:#1c1c1c;border:1px solid #806921;border-radius:15px;padding:23px 15px;text-align:center}
+.icon{font-size:35px;color:#e6c65a}
+.card h3{color:#e6c65a}
+.price{font-size:20px}
+.server{width:min(700px,92%);margin:40px auto;background:#1c1c1c;border:1px solid #806921;border-radius:15px;padding:22px}
+input{background:#101010;color:white;border:1px solid #806921;border-radius:8px;padding:12px;width:100%;margin:8px 0;font:inherit}
+footer{text-align:center;color:#aaa;padding:25px;border-top:1px solid #333;margin-top:40px;font-size:12px;line-height:2}
+#message{color:#f0d879;line-height:1.9}
+@media(max-width:650px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div style="font-size:35px;color:#e6c65a">♛</div>
+  <h1>XV SERVER</h1>
+  <p>MINECRAFT RANK SHOP</p>
+</header>
+<section class="hero">
+  <p style="color:#d4af37">YOUR WORLD. YOUR RANK.</p>
+  <h2>UPGRADE YOUR GAME</h2>
+  <p class="sub">رنک مورد علاقه‌ات رو انتخاب کن!</p>
+  <a href="#ranks" class="btn">مشاهده رنک‌ها ↓</a>
+</section>
+<section class="ranks" id="ranks">
+  <h2 style="text-align:center">👑 رنک‌های سرور</h2>
+  <div class="grid">
+    <div class="card"><div class="icon">♛</div><h3>QUEEN</h3><p class="price">۵۰٬۰۰۰ تومان</p><button class="btn" onclick="buy('QUEEN')">خرید رنک</button></div>
+    <div class="card"><div class="icon">♚</div><h3>KING</h3><p class="price">۶۰٬۰۰۰ تومان</p><button class="btn" onclick="buy('KING')">خرید رنک</button></div>
+    <div class="card"><div class="icon">✦</div><h3>VIP</h3><p class="price">۸۰٬۰۰۰ تومان</p><button class="btn" onclick="buy('VIP')">خرید رنک</button></div>
+    <div class="card"><div class="icon">⚔</div><h3>LEGEND</h3><p class="price">۱۲۰٬۰۰۰ تومان</p><button class="btn" onclick="buy('LEGEND')">خرید رنک</button></div>
+    <div class="card"><div class="icon">✹</div><h3>XV</h3><p class="price">۳۰۰٬۰۰۰ تومان</p><button class="btn" onclick="buy('XV')">خرید رنک</button></div>
+    <div class="card"><div class="icon">☼</div><h3>GOD</h3><p class="price">۴۰۰٬۰۰۰ تومان</p><button class="btn" onclick="buy('GOD')">خرید رنک</button></div>
+  </div>
+</section>
+<section class="server">
+  <h2>🎮 آدرس سرور</h2>
+  <p class="sub">هر وقت آدرس سرورت عوض شد، اینجا ویرایشش کن.</p>
+  <input id="address" placeholder="مثلاً play.example.net:25565">
+  <button class="btn" onclick="saveAddress()">ذخیره آدرس</button>
+  <p id="message"></p>
+</section>
+<footer>XV SERVER · فروشگاه رنک Minecraft<br>
+نسخه اولیه — پرداخت بانکی و تحویل خودکار هنوز فعال نیست.</footer>
+<script>
+const address=document.getElementById('address');
+address.value=localStorage.getItem('xv-address')||'';
+function saveAddress(){
+  if(!address.value.trim()){
+    document.getElementById('message').textContent='اول آدرس سرور رو وارد کن!';
+    return;
+  }
+  localStorage.setItem('xv-address',address.value.trim());
+  document.getElementById('message').textContent='آدرس سرور ذخیره شد: '+address.value.trim();
+}
+function buy(rank){
+  document.getElementById('message').textContent=
+    'رنک '+rank+' انتخاب شد. پرداخت هنوز فعال نیست؛ هیچ پولی پرداخت نمی‌شود.';
+  document.querySelector('.server').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
